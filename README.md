@@ -69,8 +69,12 @@ world.entityManager.setComponents(entity3Id, [position, health, rotationY, mesh]
 world.entityManager.getComponent(entity3Id, mesh)[world.entityManager.getArchTypeId(entity3Id)] = MeshBuilder.CreateBox("box", { size: 2 });
 world.entityManager.getComponent(entity3Id, health)[world.entityManager.getArchTypeId(entity3Id)] = 2000.0;
 
+```
+
 
 Cloning an entity, clones also it's components.
+
+```
 
 const entity4 = world.entityManager.clone(entity3Id);
 
