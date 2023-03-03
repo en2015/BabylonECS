@@ -5,19 +5,24 @@ entity-component-system for babylonjs
 
 You start by importing the world and Babylon.js. 
 
+```
 import '../../style.css'
 import { ArcRotateCamera, HemisphericLight, MeshBuilder, Vector3 } from '@babylonjs/core';
 import { ExecutionTime, QueryType, Type } from '../utilities/Types';
 import World from '../World';
+```
 
 
 The world class takes the max number of entities as parameter.
 
+```
+
 const world = new World(10);
+```
 
 You can register components as objects, arrays and single variables from the schemaManager.
 
-
+```
 
 const position = world.schemaManager.register({ x: Type.Int8, y: Type.Int8, z: Type.Int8 });
 
@@ -28,8 +33,11 @@ const camera = world.schemaManager.register(Type.Custom);
 const light = world.schemaManager.register(Type.Custom);
 
 const mesh = world.schemaManager.register(Type.Custom);
+```
 
 Entities are numeric identifiers without any data, you can create them from the entityManager.
+
+```
 
 const entityId = world.entityManager.create();
 const entity2Id = world.entityManager.create();
@@ -37,7 +45,11 @@ const entity3Id = world.entityManager.create();
 const cameraEntity = world.entityManager.create();
 const lightEntity = world.entityManager.create();
 
+```
+
 After registering components, you can apply them to different entities.
+
+```
 
 // //camera entity
 const cameraComponent = world.entityManager.addComponent(cameraEntity, camera, new ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new Vector3(0, 0, 0)));
@@ -70,8 +82,11 @@ world.entityManager.getComponent(entity5, mesh)[world.entityManager.getArchTypeI
 
 world.entityManager.removeComponent(entity5, position);
 
+```
 
 Systems are functions that are registered within Babylon.js when different events happen. 
+
+```
 
 function destroySystem() {
 
@@ -137,7 +152,11 @@ function initialSystem() {
     console.log("I am being called");
 }
 
+```
+
 After definition, these systems can be registered in the world also with their execution time.
+
+```
 
 world.systemManager.register(initialSystem, ExecutionTime.SCENE_READY)
 
@@ -157,3 +176,6 @@ world.systemManager.register(fasterRotationSystem, ExecutionTime.BEFORE_RENDER);
 world.systemManager.register(damageSystem, ExecutionTime.BEFORE_RENDER);
 
 world.initRender();
+
+```
+
